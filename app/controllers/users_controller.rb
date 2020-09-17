@@ -10,11 +10,12 @@ class UsersController < ApplicationController
         if @user.save
             render json: @user
         else
-            render json: @user.errors.messages
+            render json: {errors: @user.errors.messages}
         end
     end
 
     private
+    
     def user_params
         params.require(:user).permit([:username, :email, :password])
     end
